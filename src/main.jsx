@@ -3,11 +3,11 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { App } from './App.jsx'
 import { ThemeProvider } from '@mui/material'
-import { colors } from './utils/colors.js'
+import { theme } from './utils/theme.js'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ThemeProvider theme={colors}>  
+    <ThemeProvider theme={theme}>  
      <App />
     </ThemeProvider>  
   </StrictMode>
