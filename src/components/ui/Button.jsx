@@ -1,29 +1,10 @@
-import React from 'react'
-import Button from '@mui/material/Button'
+import { Button as MuiButton, styled } from '@mui/material'
+import { forwardRef } from 'react'
 
-export const UiButton = ({
-  variant = 'contained',
-  color = 'primary',
-  size = 'medium',
-  disabled = false,
-  fullWidth = false,
-  onClick,
-  children,
-  sx = {},
-  ...props
-}) => {
-  return (
-    <Button
-      variant={variant}
-      color={color}
-      size={size}
-      disabled={disabled}
-      fullWidth={fullWidth}
-      onClick={onClick}
-      sx={sx}
-      {...props}
-    >
-      {children}
-    </Button>
+export const Button = forwardRef(
+  ({ children, variant, type = 'button', disabled, icon, ...rest }, ref) => (
+    <MuiButton variant={variant} ref={ref} type={type} disabled={disabled} {...rest}>
+      {icon} {children}
+    </MuiButton>
   )
-}
+)
