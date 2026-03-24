@@ -9,18 +9,39 @@ export const Button = forwardRef(
   )
 )
 
-const StyledButton = styled(MuiButton)(() => ({
-  backgroundColor: '#FFD519',
-  color: '#000000',
+const StyledButton = styled(MuiButton)(({ variant }) => ({
   padding: '8px 20px',
   borderRadius: '10px',
+  textTransform: 'none',
 
-  '&:hover': {
+  ...(variant === 'contained' && {
     backgroundColor: '#FFD519',
-  },
+    color: '#000000',
+
+    '&:hover': {
+      backgroundColor: '#FFD519',
+    },
+  }),
+
+  ...(variant === 'outlined' && {
+    border: '2px solid #FFD519',
+    color: '#FFD519',
+
+    '&:hover': {
+      backgroundColor: 'rgba(255, 213, 25, 0.1)',
+    },
+  }),
+
+  ...(variant === 'text' && {
+    color: '#FFD519',
+
+    '&:hover': {
+      backgroundColor: 'rgba(255, 213, 25, 0.1)',
+    },
+  }),
 
   '&:active': {
-    backgroundColor: '#FFD519',
+    transform: 'scale(0.97)',
   },
 
   '&.Mui-disabled': {
