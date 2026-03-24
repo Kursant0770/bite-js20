@@ -5,18 +5,25 @@ const theme = createTheme({
     fontFamily: 'Helvetica, Arial, sans-serif',
   },
   palette: {
-    primary: { main: '#48C602' },
-    error: { main: '#DF1E23' },
-    warning: { main: '#FF861A' },
-    green: { main: '#48C602' },
-    red: { main: '#DF1E23' },
-    yellow: { main: '#FDDF01' },
-    orange: { main: '#FF861A' },
-    black: { main: '#000000' },
-    white: { main: '#FFFFFF' },
-    greyLight: { main: '#F5F4F2' },
-    greyMid: { main: '#BDBDBD' },
-    greyDark: { main: '#E3E3E3' },
+    primary: {
+      main: '#48C602',
+      greyDark: '#E3E3E3',
+      black: '#000000',
+      white: '#FFFFFF',
+    },
+    secondary: {
+      main: '#FDDF01',
+      orange: '#FF861A',
+      greyMid: '#BDBDBD',
+      black: '#000000',
+      white: '#FFFFFF',
+    },
+    error: {
+      main: '#DF1E23',
+      greyLight: '#F5F4F2',
+      black: '#000000',
+      white: '#FFFFFF',
+    },
   },
 })
 
