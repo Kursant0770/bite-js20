@@ -1,28 +1,23 @@
-import { Select as MuiSelect, MenuItem, FormControl } from '@mui/material'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import { Select as MuiSelect } from '@mui/material'
+import { options } from '../../../options'
 
-export function Select({
-  options = [],
-  value,
-  onChange,
-  placeholder = 'Выберите...',
-  children,
-  ...props
-}) {
+export const Select = ({ value, onChange }) => {
   return (
-    <FormControl fullWidth size="small">
+    <FormControl size="small" sx={{ minWidth: 200 }}>
+      <InputLabel id="sort-label">Сортировать по</InputLabel>
       <MuiSelect
-        value={value ?? ''}
-        onChange={(e) => onChange?.(e.target.value)}
-        displayEmpty
-        {...props}
+        labelId="sort-label"
+        id="sort-select"
+        value={value}
+        label="Сортировать по"
+        onChange={(e) => onChange(e.target.value)}
       >
-        <MenuItem value="" disabled>
-          {placeholder}
-        </MenuItem>
-        {children}
-        {options.map((opt) => (
-          <MenuItem key={opt.value} value={opt.value}>
-            {opt.label}
+        {options.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
           </MenuItem>
         ))}
       </MuiSelect>
