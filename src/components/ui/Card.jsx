@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { NoteIcon, NoteStateIcon } from '../../assets/icons'
 import { BagIcon } from '../../assets/icons'
 
-export const Card = ({ date }) => {
-  const { name, image, deliveryTime, discount } = date
+export const Card = ({ data }) => {
+  const { name, image, deliveryTime, discount } = data
   const [bookmarked, setBookmarked] = useState(false)
 
   return (
