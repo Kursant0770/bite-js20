@@ -31,11 +31,12 @@ export default [
       // React
       ...reactPlugin.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
-      'react/react-in-jsx-scope': 'off', // не нужен в React 17+
+      'react/react-in-jsx-scope': 'off',
       'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
       'react/jsx-props-no-spreading': 'off',
       'react/function-component-definition': 'off',
-      'react/prop-types': 'off', // если используешь TypeScript — off
+      'react/prop-types': 'off',
+      'react/display-name': 'off',
 
       // Импорты
       'import/prefer-default-export': 'off',
