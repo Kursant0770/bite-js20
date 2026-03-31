@@ -23,40 +23,14 @@ export const UserCard = ({ title, price, oldPrice, weight, image }) => {
       <Weight>{weight} г</Weight>
 
       {count === 0 ? (
-        <Button
-          onClick={() => setCount(1)}
-          variant="outlined"
-          style={{ width: '100%', marginTop: '10px', height: '38px' }}
-        >
+        <AddButton onClick={() => setCount(1)} variant="outlined">
           + Добавить
-        </Button>
+        </AddButton>
       ) : (
         <Counter>
-          <Button
-            onClick={() => setCount(count - 1)}
-            sx={{
-              minWidth: 'auto',
-              border: 'none',
-              background: 'transparent',
-              boxShadow: 'none',
-              fontSize: '18px',
-            }}
-          >
-            -
-          </Button>
+          <CounterButton onClick={() => setCount(count - 1)}>-</CounterButton>
           <span>{count}</span>
-          <Button
-            onClick={() => setCount(count + 1)}
-            sx={{
-              minWidth: 'auto',
-              border: 'none',
-              background: 'transparent',
-              boxShadow: 'none',
-              fontSize: '18px',
-            }}
-          >
-            +
-          </Button>
+          <CounterButton onClick={() => setCount(count + 1)}>+</CounterButton>
         </Counter>
       )}
     </Card>
@@ -138,4 +112,18 @@ const Counter = styled('div')({
   border: '1px solid black',
   borderRadius: '10px',
   padding: '0 10px',
+})
+
+const CounterButton = styled(Button)({
+  minWidth: 'auto',
+  border: 'none',
+  background: 'transparent',
+  boxShadow: 'none',
+  fontSize: '18px',
+})
+
+const AddButton = styled(Button)({
+  width: '100%',
+  marginTop: '10px',
+  height: '38px',
 })
