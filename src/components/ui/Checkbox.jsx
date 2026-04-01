@@ -1,39 +1,41 @@
-import { forwardRef } from "react";
+import { forwardRef } from 'react'
+import { Checkbox as MuiCheckbox } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
-const Checkbox = forwardRef(({
-  checked,
-  onChange,
-  disabled = false,
-  icon,
-  ...rest
-}, ref) => {
-  return (
-    <label style={{ position: "relative", display: "inline-block", width: 24, height: 24 }}>
-      <input
+export const Checkbox = forwardRef(function Checkbox(
+  { checked, onChange, disabled = false, icon, ...rest },
+  ref
+) {
+    <MuiLabel>
+      <MuiStyledCheckbox
         ref={ref}
-        type="checkbox"
         checked={checked}
         onChange={onChange}
         disabled={disabled}
-        style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
         {...rest}
       />
-      <span style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: 24,
-        height: 24,
-        border: "0.5px solid black",
-        borderRadius: 4,
-        background: checked ? "green" : "white",
-      }}>
-        {checked && icon}
-      </span>
-    </label>
-  );
-});
+      <MuiSpan>{checked && icon}</MuiSpan>
+    </MuiLabel>
+})
 
-Checkbox.displayName = "Checkbox";
+const MuiLabel = styled('label')({
+  position: 'relative',
+  display: 'inline-block',
+  width: 24,
+  height: 24,
+})
 
-export default Checkbox;
+const MuiStyledCheckbox = styled(MuiCheckbox)({
+  position: 'absolute',
+  opacity: 0,
+  width: 0,
+  height: 0,
+})
+
+const MuiSpan = styled('span')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: 24,
+  height: 24,
+})

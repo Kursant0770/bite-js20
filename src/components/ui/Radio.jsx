@@ -1,39 +1,43 @@
-import { forwardRef } from "react";
+import { forwardRef } from 'react'
+import { Radio as MuiRadio } from '@mui/material'
+import { styled } from '@mui/material/styles'
 
-const Radio = forwardRef(({
-  checked,
-  onChange,
-  disabled = false,
-  icon,
-  ...rest
-}, ref) => {
-  return (
-    <label style={{ display: "inline-block", width: 24, height: 24 }}>
-      <input
+export const Radio = forwardRef(function Radio(
+  { checked, onChange, disabled = false, icon, ...rest },
+  ref
+) {
+    <MuiLabel>
+      <MuiStyledRadio
         ref={ref}
-        type="radio"
         checked={checked}
         onChange={onChange}
         disabled={disabled}
-        style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
         {...rest}
       />
-      <span style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: 24,
-        height: 24,
-        borderRadius: "50%",
-        border: "1px solid #ccc",
-        background: checked ? "yellow" : "#ccc",
-      }}>
-        {checked && icon}
-      </span>
-    </label>
-  );
-});
+      <MuiSpan checked={checked}>{checked && icon}</MuiSpan>
+    </MuiLabel>
+})
 
-Radio.displayName = "Radio";
+const MuiLabel = styled('label')({
+  position: 'relative',
+  display: 'inline-block',
+  width: 24,
+  height: 24,
+})
 
-export default Radio;
+const MuiStyledRadio = styled(MuiRadio)({
+  position: 'absolute',
+  opacity: 0,
+  width: 0,
+  height: 0,
+})
+
+const MuiSpan = styled('span')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: 24,
+  height: 24,
+  borderRadius: '50%',
+  border: '1px solid #ccc',
+})
