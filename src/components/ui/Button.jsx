@@ -13,6 +13,7 @@ const StyledButton = styled(MuiButton)(({ variant }) => ({
   padding: '8px 20px',
   borderRadius: '10px',
   textTransform: 'none',
+  height: '34px',
 
   ...(!variant && {
     border: '1px solid #000000',
