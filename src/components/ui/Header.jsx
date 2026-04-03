@@ -43,7 +43,7 @@ export const Header = ({
             <User src={UserIcon} alt="user" />
           </>
         ) : (
-          <StylуButton>Войти</StylуButton>
+          <StyleButton>Войти</StyleButton>
         )}
         {rightChildren}
       </Right>
@@ -146,7 +146,7 @@ const SearchIconImg = styled('img')({
   pointerEvents: 'none',
 })
 
-const StylуButton = styled(Button)(({ theme }) => ({
+const StyleButton = styled(Button)(({ theme }) => ({
   border: '1px solid #000000',
   padding: '8px 22px 8px 22px',
   width: '93px',
