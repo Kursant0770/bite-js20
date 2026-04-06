@@ -1,5 +1,1 @@
-import { BannerSlider } from './components/BannerSlider'
-
-export const App = () => {
-  return <BannerSlider />
-}
+export const App = () => <h1>Bite</h1>
