@@ -1,34 +1,42 @@
-import { styled } from '@mui/material'
+import { styled, Typography, Box, ButtonBase } from '@mui/material'
 import { useState } from 'react'
-import { NoteIcon, NoteStateIcon } from '../../assets/icons'
-import { BagIcon } from '../../assets/icons'
+import { NoteIcon, NoteStateIcon, BagIcon } from '../../assets/icons'
 
 export const Card = ({ data }) => {
   const { name, image, deliveryTime, discount } = data
+
   const [bookmarked, setBookmarked] = useState(false)
+
+  const handleBookmarkClick = () => {
+    setBookmarked((prev) => !prev)
+  }
 
   return (
     <StyledCard>
       <StyledImageWrapper>
         <StyledImage src={image} alt={name} />
-        <StyledBookmark bookmarked={bookmarked} onClick={() => setBookmarked((prev) => !prev)}>
+
+        <StyledBookmark bookmarked={bookmarked} onClick={handleBookmarkClick} disableRipple>
           {bookmarked ? <img className="noteState" src={NoteStateIcon} /> : <img src={NoteIcon} />}
         </StyledBookmark>
       </StyledImageWrapper>
 
       <StyledInfo>
-        <StyledName>{name}</StyledName>
+        <StyledName variant="h3">{name}</StyledName>
+
         <StyledDelivery>
           <StyledDeliveryIcon src={BagIcon} />
-          <StyledDeliveryTime>{deliveryTime} мин</StyledDeliveryTime>
+
+          <StyledDeliveryTime component="span">{deliveryTime} мин</StyledDeliveryTime>
         </StyledDelivery>
-        {discount && <StyledDiscount>-{discount}% на ряд блюд</StyledDiscount>}
+
+        {discount && <StyledDiscount component="span">-{discount}% на ряд блюд</StyledDiscount>}
       </StyledInfo>
     </StyledCard>
   )
 }
 
-const StyledCard = styled('div')({
+const StyledCard = styled(Box)({
   maxWidth: '325px',
   maxHeight: '255px',
   width: '100%',
@@ -36,7 +44,7 @@ const StyledCard = styled('div')({
   overflow: 'hidden',
 })
 
-const StyledImageWrapper = styled('div')({
+const StyledImageWrapper = styled(Box)({
   position: 'relative',
 })
 
@@ -50,7 +58,9 @@ const StyledImage = styled('img')({
   display: 'block',
 })
 
-const StyledBookmark = styled('button')({
+const StyledBookmark = styled(ButtonBase, {
+  shouldForwardProp: (prop) => prop !== 'bookmarked',
+})(() => ({
   position: 'absolute',
   top: 10,
   right: 10,
@@ -63,14 +73,14 @@ const StyledBookmark = styled('button')({
   '& .noteState': {
     width: '17px',
   },
-})
+}))
 
-const StyledInfo = styled('div')({
+const StyledInfo = styled(Box)({
   marginTop: '10px',
   maxHeight: '63px',
 })
 
-const StyledName = styled('h3')({
+const StyledName = styled(Typography)({
   fontFamily: 'Helvetica',
   fontWeight: '400',
   lineHeight: '100%',
@@ -78,7 +88,7 @@ const StyledName = styled('h3')({
   fontSize: '16px',
 })
 
-const StyledDelivery = styled('div')({
+const StyledDelivery = styled(Box)({
   marginTop: '6px',
   display: 'flex',
   alignItems: 'center',
@@ -91,14 +101,14 @@ const StyledDeliveryIcon = styled('img')({
   height: '18px',
 })
 
-const StyledDeliveryTime = styled('span')({
+const StyledDeliveryTime = styled(Typography)({
   fontFamily: 'Helvetica',
   fontWeight: '400',
   fontSize: '16px',
   lineHeight: '100%',
 })
 
-const StyledDiscount = styled('span')({
+const StyledDiscount = styled(Typography)({
   marginTop: '10px',
   height: '11px',
   display: 'inline-block',
