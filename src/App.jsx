@@ -1,1 +1,5 @@
-export const App = () => <h1>Bite</h1>
+import { BannerSlider } from './components/BannerSlider'
+
+export const App = () => {
+  return <BannerSlider />
+}
