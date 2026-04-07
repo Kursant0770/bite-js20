@@ -1,53 +1,75 @@
-import { useState } from 'react'
-import { styled, keyframes } from '@mui/material'
+import { useCallback } from 'react'
+import { styled, Box, IconButton } from '@mui/material'
 import { LeftArrowIcon, RightArrowIcon } from '../../../assets/icons'
+import Autoplay from 'embla-carousel-autoplay'
+import useEmblaCarousel from 'embla-carousel-react'
 
-const scroll = keyframes`
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-25%); } 
-`
+export const InfiniteCarousel = ({ data, speed = 5000 }) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: speed, stopOnInteraction: false }),
+  ])
 
-export const InfiniteCarousel = ({ data, speed = 25 }) => {
-  const [paused, setPaused] = useState(false)
+  const handlePrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
+  const handleNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
 
   if (!data || data.length === 0) return null
 
-  const displayData = [...data, ...data, ...data, ...data]
+  const displayData = data.length < 4 ? [...data, ...data, ...data, ...data] : data
 
   return (
     <StyleOuterContainer>
-      <StyledArrow className="left" onClick={() => setPaused((p) => !p)}>
-        <img src={LeftArrowIcon} />
+      <StyledArrow className="left" onClick={handlePrev} disableRipple>
+        <img src={LeftArrowIcon} alt="prev" />
       </StyledArrow>
 
-      <StyledArrow className="right" onClick={() => setPaused((p) => !p)}>
-        <img src={RightArrowIcon} />
+      <StyledArrow className="right" onClick={handleNext} disableRipple>
+        <img src={RightArrowIcon} alt="next" />
       </StyledArrow>
 
-      <StyleWrapper speed={speed} paused={paused}>
-        {displayData.map((item, index) => (
-          <StyleImageBox key={`${item.id}-${index}`}>
-            <StyleImage src={item.image} alt="" />
-          </StyleImageBox>
-        ))}
-      </StyleWrapper>
+      <StyleViewport ref={emblaRef}>
+        <StyleWrapper>
+          {displayData.map((item, index) => (
+            <StyleImageBox key={`${item.id}-${index}`}>
+              <StyleImage src={item.image} alt="" />
+            </StyleImageBox>
+          ))}
+        </StyleWrapper>
+      </StyleViewport>
     </StyleOuterContainer>
   )
 }
 
-const StyleOuterContainer = styled('div')({
+const StyleOuterContainer = styled(Box)({
   position: 'relative',
-  overflow: 'hidden',
   width: '100%',
   margin: '20px 0 0',
 })
 
-const StyledArrow = styled('button')({
+const StyleViewport = styled(Box)({
+  overflow: 'hidden',
+})
+
+const StyleWrapper = styled(Box)({
+  display: 'flex',
+})
+
+const StyleImageBox = styled(Box)({
+  flex: '0 0 auto',
+  paddingLeft: '20px',
+})
+
+const StyleImage = styled('img')({
+  width: '555px',
+  height: '152px',
+  borderRadius: '10px',
+  objectFit: 'cover',
+})
+
+const StyledArrow = styled(IconButton)({
   position: 'absolute',
   top: '49%',
   zIndex: 10,
   transform: 'translateY(-50%)',
-  transition: '0.3s',
 
   width: '38px',
   height: '38px',
@@ -62,42 +84,15 @@ const StyledArrow = styled('button')({
   padding: 0,
 
   '&.left': {
-    left: '0',
+    left: 0,
   },
 
   '&.right': {
-    right: '0',
+    right: 0,
   },
 
   '&:hover': {
     opacity: 0.8,
-    transform: 'translateY(-50%) scale(1.1)',
+    transform: 'translateY(-50%) scale(1.02)',
   },
 })
-
-const StyleWrapper = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'speed' && prop !== 'paused',
-})(({ speed, paused }) => ({
-  width: 'max-content',
-  display: 'flex',
-  gap: '20px',
-
-  animation: `${scroll} ${speed}s linear infinite`,
-
-  animationPlayState: paused ? 'paused' : 'running',
-
-  '&:hover': {
-    animationPlayState: 'paused',
-  },
-}))
-
-const StyleImageBox = styled('div')(() => ({
-  flexShrink: 0,
-}))
-
-const StyleImage = styled('img')(() => ({
-  width: '555px',
-  height: '152px',
-  borderRadius: '10px',
-  objectFit: 'cover',
-}))

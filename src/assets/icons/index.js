@@ -1,5 +1,5 @@
 import AboutIcon from './svgs/about.svg'
-import AddImageIcon from './svgs/add-Image.svg'
+import AddImageIcon from './svgs/add-image.svg'
 import AppleIcon from './svgs/apple.svg'
 import AttentionIcon from './svgs/attention.svg'
 import BagIcon from './svgs/bag.svg'
