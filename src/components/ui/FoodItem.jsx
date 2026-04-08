@@ -1,6 +1,50 @@
 import { useState, forwardRef } from "react";
-import { Box, Typography, IconButton } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Box, Typography, IconButton, styled } from "@mui/material";
+
+export const FoodItem = forwardRef(({ img, name, price, weight }, ref) => {
+  const [count, setCount] = useState(0);
+
+  const handleIncrement = () => {
+    setCount((c) => c + 1);
+  };
+
+  const handleDecrement = () => {
+    setCount((c) => Math.max(0, c - 1));
+  }
+
+  return (
+    <CardWrapper ref={ref}>
+      <Box display="flex" alignItems="center" gap="10px">
+        <FoodImage src={img} alt={name} />
+        <Box>
+          <Typography fontSize={16} fontWeight={400} color="#1a1a1a" mb="4px">
+            {name}
+          </Typography>
+          <Box display="flex" alignItems="center" gap="12px">
+            <Typography fontSize={16} fontWeight={400} color="#1a1a1a">
+              {price} сом
+            </Typography>
+            <Typography fontSize={16} color="#aaa">
+              {weight} г
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+
+      <CounterWrapper>
+        <CounterButton disableRipple onClick={handleDecrement}>
+          −
+        </CounterButton>
+        <Typography fontSize={17} fontWeight={500} minWidth="16px" textAlign="center" marginBottom="3px">
+          {count}
+        </Typography>
+        <CounterButton disableRipple onClick={handleIncrement}>
+          +
+        </CounterButton>
+      </CounterWrapper>
+    </CardWrapper>
+  );
+});
 
 const CardWrapper = styled(Box)({
   display: "flex",
@@ -41,41 +85,4 @@ const CounterButton = styled(IconButton)({
   "&:hover": {
     backgroundColor: "transparent",
   },
-});
-
-export const FoodItem = forwardRef(({ img, name, price, weight }, ref) => {
-  const [count, setCount] = useState(0);
-
-  return (
-    <CardWrapper ref={ref}>
-      <Box display="flex" alignItems="center" gap="10px">
-        <FoodImage src={img} alt={name} />
-        <Box>
-          <Typography fontSize={16} fontWeight={400} color="#1a1a1a" mb="4px">
-            {name}
-          </Typography>
-          <Box display="flex" alignItems="center" gap="12px">
-            <Typography fontSize={16} fontWeight={400} color="#1a1a1a">
-              {price} сом
-            </Typography>
-            <Typography fontSize={16} color="#aaa">
-              {weight} г
-            </Typography>
-          </Box>
-        </Box>
-      </Box>
-
-      <CounterWrapper>
-        <CounterButton disableRipple onClick={() => setCount((c) => Math.max(0, c - 1))}>
-          −
-        </CounterButton>
-        <Typography fontSize={17} fontWeight={500} minWidth="16px" textAlign="center" marginBottom="3px">
-          {count}
-        </Typography>
-        <CounterButton disableRipple onClick={() => setCount((c) => c + 1)}>
-          +
-        </CounterButton>
-      </CounterWrapper>
-    </CardWrapper>
-  );
 });
