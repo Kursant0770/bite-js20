@@ -1,38 +1,37 @@
 import { forwardRef } from 'react'
-import { Checkbox as MuiCheckbox } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import { Checkbox as MuiCheckbox, styled } from '@mui/material'
 
 export const Checkbox = forwardRef(function Checkbox(
   { checked, onChange, disabled = false, icon, ...rest },
   ref
 ) {
-    <MuiLabel>
-      <MuiStyledCheckbox
+    <StyledMuiLabel>
+      <StyledMuiCheckbox
         ref={ref}
         checked={checked}
         onChange={onChange}
         disabled={disabled}
         {...rest}
       />
-      <MuiSpan>{checked && icon}</MuiSpan>
-    </MuiLabel>
+      <StyledMuiSpan>{checked && icon}</StyledMuiSpan>
+    </StyledMuiLabel>
 })
 
-const MuiLabel = styled('label')({
+const StyledMuiLabel = styled('label')({
   position: 'relative',
   display: 'inline-block',
   width: 24,
   height: 24,
 })
 
-const MuiStyledCheckbox = styled(MuiCheckbox)({
+const StyledMuiCheckbox = styled(MuiCheckbox)({
   position: 'absolute',
   opacity: 0,
   width: 0,
   height: 0,
 })
 
-const MuiSpan = styled('span')({
+const StyledMuiSpan = styled('span')({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
