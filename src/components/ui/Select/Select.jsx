@@ -2,25 +2,27 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import { Select as MuiSelect } from '@mui/material'
-import { options } from '../../../options'
+import { forwardRef } from 'react'
 
-export const Select = ({ value, onChange }) => {
+export const Select = forwardRef(({ value, onChange, options, label }, ref) => {
   return (
     <FormControl size="small" style={{ minWidth: 200 }}>
-      <InputLabel id="sort-label">Сортировать по</InputLabel>
+      <InputLabel id="sort-label">{label}</InputLabel>
       <MuiSelect
+        ref={ref}
         labelId="sort-label"
         id="sort-select"
         value={value}
-        label="Сортировать по"
+        label={label}
         onChange={(e) => onChange(e.target.value)}
       >
-        {options.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
+        {options.map(({ value, label }) => (
+          <MenuItem key={value} value={value}>
+            {label}
           </MenuItem>
         ))}
       </MuiSelect>
     </FormControl>
   )
-}
+})
+
