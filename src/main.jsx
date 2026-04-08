@@ -1,10 +1,10 @@
 import { createRoot } from 'react-dom/client'
-import { App } from './App.jsx'
-import Themes from './components/ui/Themes.jsx'
 import './index.css'
+import Themes from './components/Themes.jsx'
+import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <Themes>
-    <App />
+    <App/>
   </Themes>
 )
