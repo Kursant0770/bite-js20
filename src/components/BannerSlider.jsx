@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles'
+import { Box } from '@mui/material'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
@@ -37,8 +38,12 @@ export const BannerSlider = () => {
         }}
       >
         {banners.map((banner) => (
-          <SwiperSlide key={banner.id} style={{ width: '670px' }}>
-            <BannerCard src={banner.image} alt={`banner-${banner.id}`} />
+          <SwiperSlide key={banner.id}>
+            <BannerCard
+              component="img"
+              src={banner.image}
+              alt={`banner-${banner.id}`}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -46,13 +51,13 @@ export const BannerSlider = () => {
   )
 }
 
-const SliderWrapper = styled('div')({
+const SliderWrapper = styled(Box)({
   width: '100%',
   borderRadius: '20px',
   overflow: 'hidden',
 })
 
-const BannerCard = styled('img')({
+const BannerCard = styled(Box)({
   width: '100%',
   height: '486px',
   objectFit: 'cover',
