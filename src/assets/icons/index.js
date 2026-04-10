@@ -47,8 +47,10 @@ import WhiteStarIcon from './white-star.svg'
 import WorldIcon from './world.svg'
 import YoutubeIcon from './youtube.svg'
 import IconamoonIcon from './svgs/iconamoon_discount-fill.svg'
+import AvatarIcon from './svgs/avatar.svg'
 
 export {
+  AvatarIcon,
   IconamoonIcon,
   AboutIcon,
   AddImageIcon,

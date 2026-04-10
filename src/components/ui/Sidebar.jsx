@@ -2,8 +2,6 @@ import { useState } from 'react'
 import { styled } from '@mui/material/styles'
 import { List, ListItemButton, ListItemIcon, ListItemText, Box, Collapse } from '@mui/material'
 
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-
 import BannersIcon from '../../assets/icons/svgs/banners.svg'
 import CategoriesIcon from '../../assets/icons/svgs/categories.svg'
 import DishesIcon from '../../assets/icons/svgs/dishes.svg'
@@ -15,7 +13,7 @@ import ReviewsIcon from '../../assets/icons/svgs/reviews.svg'
 import SettingsIcon from '../../assets/icons/svgs/settings.svg'
 import IconamoonIcon from '../../assets/icons/svgs/iconamoon_discount-fill.svg'
 import ModerationIcon from '../../assets/icons/svgs/moderation.svg'
-import VectorIcon from '../../assets/icons/svgs/Vector (4).svg'
+import AvatarIcon from '../../assets/icons/svgs/avatar.svg'
 
 const adminMenu = [
   { text: 'Главная', icon: <Box component="img" src={HomePageIcon} alt="homepage" /> },
@@ -43,7 +41,7 @@ const moderationChildren = [
   { text: 'Блюда', icon: <Box component="img" src={DishesIcon} alt="dishes" /> },
 ]
 
-const Sidebar = ({ role = 'admin', active, onChange, chaildren }) => {
+export const Sidebar = ({ role = 'admin', active, onChange, props }) => {
   const [open, setOpen] = useState(false)
 
   const menu = role === 'admin' ? adminMenu : userMenu
@@ -52,8 +50,8 @@ const Sidebar = ({ role = 'admin', active, onChange, chaildren }) => {
     <SidebarWrapper>
       <Header>
         <Div>
-          <Avatar>{chaildren}</Avatar>
-          <Box component="img" src={VectorIcon} alt="logo" />
+          <Avatar>{props}</Avatar>
+          <Box component="img" src={AvatarIcon} alt="logo" />
         </Div>
         <Logo src={LogoIcon} alt="logo" />
       </Header>
@@ -77,7 +75,7 @@ const Sidebar = ({ role = 'admin', active, onChange, chaildren }) => {
                 <Box component="img" src={ModerationIcon} alt="moderation" />
               </ListItemIcon>
               <ListItemText primary="Модерация" />
-              <RotateIcon open={open ? 1 : 0} />
+              <RotateIcon src={AvatarIcon} open={open ? 1 : 0} />
             </MenuItem>
 
             <Collapse in={open} timeout="auto" unmountOnExit>
@@ -100,8 +98,6 @@ const Sidebar = ({ role = 'admin', active, onChange, chaildren }) => {
     </SidebarWrapper>
   )
 }
-
-export default Sidebar
 
 const SidebarWrapper = styled(Box)({
   width: '280px',
@@ -139,7 +135,7 @@ const SubItem = styled(ListItemButton)(({ active }) => ({
   }),
 }))
 
-const RotateIcon = styled(ExpandMoreIcon)(({ open }) => ({
+const RotateIcon = styled('img')(({ open }) => ({
   marginLeft: '80px',
   transition: '0.3s',
   transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
