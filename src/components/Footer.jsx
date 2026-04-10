@@ -4,8 +4,8 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Link from '@mui/material/Link'
 import IconButton from '@mui/material/IconButton'
-import styled from 'styled-components'
-import { YoutubeIcon, InstagramIcon } from '../assets/icons'
+import { styled } from '@mui/material/styles'
+import { InstagramIcon, YoutubeIcon } from '../../assets/icons/index.js'
 
 const footerLinks = {
   'Присоединиться к нам': ['Вакансии', 'для партнеров'],
@@ -56,10 +56,10 @@ export default function Footer() {
 
           <Grid item xs={12} md="auto">
             <SocialColumn>
-              <SocialButton href="https://www.instagram.com/">
+              <SocialButton href="#">
                 <SocialIcon src={InstagramIcon} alt="instagram" />
               </SocialButton>
-              <SocialButton href="https://www.youtube.com/">
+              <SocialButton href="#">
                 <SocialIcon src={YoutubeIcon} alt="youtube" />
               </SocialButton>
             </SocialColumn>
@@ -70,52 +70,50 @@ export default function Footer() {
   )
 }
 
-const FooterWrapper = styled(Box)`
-  background-color: #cc0000;
-  padding: 40px 50px;
-`
+const FooterWrapper = styled(Box)({
+  backgroundColor: '#cc0000',
+  padding: '40px 48px',
+})
 
-const FooterTitle = styled(Typography)`
-  color: #ffffff;
-  font-weight: 700 !important;
-  font-size: 15px !important;
-  margin-bottom: 16px !important;
-`
+const FooterTitle = styled(Typography)({
+  color: '#ffffff',
+  fontWeight: '700 !important',
+  fontSize: '15px !important',
+  marginBottom: '16px !important',
+})
 
-const FooterLink = styled(Link)`
-  color: rgba(255, 255, 255, 0.85) !important;
-  font-size: 14px !important;
-  display: block !important;
-  margin-bottom: 10px !important;
-  text-decoration: none !important;
-  cursor: pointer;
+const FooterLink = styled(Link)({
+  color: 'rgba(255, 255, 255, 0.85) !important',
+  fontSize: '14px !important',
+  display: 'block !important',
+  marginBottom: '10px !important',
+  textDecoration: 'none !important',
+  cursor: 'pointer',
+  '&:hover': {
+    color: '#ffffff !important',
+  },
+})
 
-  &:hover {
-    color: #ffffff !important;
-  }
-`
+const SocialColumn = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '16px',
+  alignItems: 'center',
+  marginLeft: 'auto',
+})
 
-const SocialColumn = styled(Box)`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-  margin-left: auto;
-`
+const SocialButton = styled(IconButton)({
+  border: '2px solid rgba(255, 255, 255, 0.7) !important',
+  borderRadius: '8px !important',
+  color: '#ffffff !important',
+  padding: '6px !important',
+  '&:hover': {
+    borderColor: '#ffffff !important',
+    backgroundColor: 'rgba(255, 255, 255, 0.1) !important',
+  },
+})
 
-const SocialButton = styled(IconButton)`
-  border: 2px solid rgba(255, 255, 255, 0.7) !important;
-  border-radius: 8px !important;
-  color: #ffffff !important;
-  padding: 6px !important;
-
-  &:hover {
-    border-color: #ffffff !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
-  }
-`
-
-const SocialIcon = styled.img`
-  width: 20px;
-  height: 20px;
-`
+const SocialIcon = styled('img')({
+  width: '20px',
+  height: '20px',
+})
