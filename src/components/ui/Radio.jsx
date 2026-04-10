@@ -1,21 +1,12 @@
 import { forwardRef } from 'react'
 import { Radio as MuiRadio, styled } from '@mui/material'
 
-export const Radio = forwardRef(function Radio(
-  { checked, onChange, disabled = false, icon, ...rest },
-  ref
-) {
-    <StyledMuiLabel>
-      <StyledMuiRadio
-        ref={ref}
-        checked={checked}
-        onChange={onChange}
-        disabled={disabled}
-        {...rest}
-      />
-      <StyledMuiSpan checked={checked}>{checked && icon}</StyledMuiSpan>
-    </StyledMuiLabel>
-})
+export const Radio = forwardRef(({ checked, onChange, disabled = false, icon, ...rest }, ref) => (
+  <StyledMuiLabel>
+    <StyledMuiRadio ref={ref} checked={checked} onChange={onChange} disabled={disabled} {...rest} />
+    <StyledMuiSpan checked={checked}>{checked && icon}</StyledMuiSpan>
+  </StyledMuiLabel>
+))
 
 const StyledMuiLabel = styled('label')({
   position: 'relative',

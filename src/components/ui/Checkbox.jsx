@@ -1,10 +1,8 @@
 import { forwardRef } from 'react'
 import { Checkbox as MuiCheckbox, styled } from '@mui/material'
 
-export const Checkbox = forwardRef(function Checkbox(
-  { checked, onChange, disabled = false, icon, ...rest },
-  ref
-) {
+export const Checkbox = forwardRef(
+  ({ checked, onChange, disabled = false, icon, ...rest }, ref) => (
     <StyledMuiLabel>
       <StyledMuiCheckbox
         ref={ref}
@@ -15,7 +13,8 @@ export const Checkbox = forwardRef(function Checkbox(
       />
       <StyledMuiSpan>{checked && icon}</StyledMuiSpan>
     </StyledMuiLabel>
-})
+  )
+)
 
 const StyledMuiLabel = styled('label')({
   position: 'relative',
