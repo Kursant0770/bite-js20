@@ -56,10 +56,10 @@ export default function Footer() {
 
           <Grid item xs={12} md="auto">
             <SocialColumn>
-              <SocialButton href="#">
+              <SocialButton href="https://www.instagram.com/">
                 <SocialIcon src={InstagramIcon} alt="instagram" />
               </SocialButton>
-              <SocialButton href="#">
+              <SocialButton href="https://www.youtube.com/">
                 <SocialIcon src={YoutubeIcon} alt="youtube" />
               </SocialButton>
             </SocialColumn>
