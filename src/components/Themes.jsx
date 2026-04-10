@@ -4,7 +4,6 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Helvetica, Arial, sans-serif',
   },
-
   palette: {
     primary: {
       main: '#48C602',
@@ -12,7 +11,6 @@ const theme = createTheme({
       black: '#000000',
       white: '#FFFFFF',
     },
-
     secondary: {
       main: '#FDDF01',
       orange: '#FF861A',
@@ -20,7 +18,6 @@ const theme = createTheme({
       black: '#000000',
       white: '#FFFFFF',
     },
-
     error: {
       main: '#DF1E23',
       greyLight: '#F5F4F2',
