@@ -1,1 +1,11 @@
-export const App = () => <h1>Bite</h1>
+import Footer from './components/Footer'
+
+function App() {
+  return (
+    <>
+      <Footer />
+    </>
+  )
+}
+
+export default App
