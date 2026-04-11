@@ -1,4 +1,6 @@
 import { Box, styled, Typography } from '@mui/material'
+import { Button } from "../ui/Button"
+
 
 export const EstablishmentInfo = ({ data }) => {
   const {
@@ -12,13 +14,13 @@ export const EstablishmentInfo = ({ data }) => {
 
   return (
     <div>
-      <StyledImageBox>
+      <StyledBoxImage>
         <StyledImage src={image} alt="" />
-      </StyledImageBox>
+      </StyledBoxImage>
 
       <StyledH1 variant="h1">Информация о заведении</StyledH1>
 
-      <StyledInfoBox>
+      <StyledBoxInfo>
         <div>
           <StyledH2 variant="h2">Адрес: </StyledH2>
 
@@ -33,12 +35,12 @@ export const EstablishmentInfo = ({ data }) => {
           </StyledSpan>
         </div>
 
-        <StyledContactsBox>
+        <StyledBoxContacts>
           <StyledH2 variant="h2">Контакты: </StyledH2>
 
           <StyledSpan component="span">{phone}</StyledSpan>
           <StyledSpan component="span">{email}</StyledSpan>
-        </StyledContactsBox>
+        </StyledBoxContacts>
 
         <div className="inline">
           <StyledH2 variant="h2">ИП: </StyledH2>
@@ -55,26 +57,26 @@ export const EstablishmentInfo = ({ data }) => {
           <StyledSpan component="span">{inn}</StyledSpan>
         </div>
 
-        <StyledFoodBox>
+        <StyledBoxFood>
           <StyledH2 variant="h2">Категории еды: </StyledH2>
           {categories.map((cat) => (
             <StyledSpan component="span" key={cat}>
               {cat},
             </StyledSpan>
           ))}
-        </StyledFoodBox>
-      </StyledInfoBox>
+        </StyledBoxFood>
+      </StyledBoxInfo>
 
-      <div>
-        <button>На доп. проверку</button>
-        <button>Отклонить!</button>
-        <button>Одобрить!</button>
-      </div>
+      <StyledBoxButton>
+        <Button>На доп. проверку</Button>
+        <Button>Отклонить!</Button>
+        <Button variant="contained" >Одобрить!</Button>
+      </StyledBoxButton>
     </div>
   )
 }
 
-const StyledImageBox = styled(Box)({
+const StyledBoxImage = styled(Box)({
   width: '900px',
   height: '364px',
 })
@@ -98,7 +100,7 @@ const StyledH1 = styled(Typography)({
   lineHeight: '100%',
 })
 
-const StyledInfoBox = styled(Box)({
+const StyledBoxInfo = styled(Box)({
   margin: '60px 0 80px',
   display: 'grid',
   gap: '20px',
@@ -128,11 +130,17 @@ const StyledSpan = styled(Typography)({
   lineHeight: '100%',
 })
 
-const StyledContactsBox = styled(Box)({
+const StyledBoxContacts = styled(Box)({
   display: 'grid',
 })
 
-const StyledFoodBox = styled(Box)({
+const StyledBoxFood = styled(Box)({
   display: 'flex',
   gap: '10px',
+})
+
+const StyledBoxButton = styled(Box)({
+    display: "flex",
+    justifyContent: "end",
+    gap: "20px",
 })
