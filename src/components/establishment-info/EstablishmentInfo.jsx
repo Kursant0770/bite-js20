@@ -1,3 +1,5 @@
+import { Box, styled, Typography } from '@mui/material'
+
 export const EstablishmentInfo = ({ data }) => {
   const {
     image,
@@ -10,53 +12,58 @@ export const EstablishmentInfo = ({ data }) => {
 
   return (
     <div>
-      <div>
-        <img src={image} alt="" />
-      </div>
+      <StyledImageBox>
+        <StyledImage src={image} alt="" />
+      </StyledImageBox>
 
-      <h1>Информация о заведении</h1>
+      <StyledH1 variant="h1">Информация о заведении</StyledH1>
 
-      <div>
+      <StyledInfoBox>
         <div>
-          <h2>Адрес:</h2>
+          <StyledH2 variant="h2">Адрес: </StyledH2>
 
-          <span>{address}</span>
+          <StyledSpan component="span">{address}</StyledSpan>
         </div>
 
         <div>
-          <h2>График работы:</h2>
+          <StyledH2 variant="h2">График работы: </StyledH2>
 
-          <span>
+          <StyledSpan component="span">
             с {open} до {close}
-          </span>
+          </StyledSpan>
+        </div>
+
+        <StyledContactsBox>
+          <StyledH2 variant="h2">Контакты: </StyledH2>
+
+          <StyledSpan component="span">{phone}</StyledSpan>
+          <StyledSpan component="span">{email}</StyledSpan>
+        </StyledContactsBox>
+
+        <div className="inline">
+          <StyledH2 variant="h2">ИП: </StyledH2>
+          <StyledSpan component="span">{ip_number}</StyledSpan>
         </div>
 
         <div>
-          <h2>Контакты:</h2>
-
-          <span>{phone}</span>
-          <span>{email}</span>
-        </div>
-
-        <h2>ИП:{ip_number}</h2>
-
-        <div>
-          <h2>Исполнитель (продавец):</h2>
-          <span>{seller}</span>
+          <StyledH2 variant="h2">Исполнитель (продавец): </StyledH2>
+          <StyledSpan component="span">{seller}</StyledSpan>{' '}
         </div>
 
         <div>
-          <span>Идентификационный номер налогоплатильщика: </span>
-          <span>{inn}</span>
+          <StyledH2 variant="h2">Идентификационный номер налогоплатильщика: </StyledH2>
+          <StyledSpan component="span">{inn}</StyledSpan>
         </div>
 
-        <h1>
-          Категории еды:
+        <StyledFoodBox>
+          <StyledH2 variant="h2">Категории еды: </StyledH2>
           {categories.map((cat) => (
-            <span key={cat}>{cat},</span>
+            <StyledSpan component="span" key={cat}>
+              {cat},
+            </StyledSpan>
           ))}
-        </h1>
-      </div>
+        </StyledFoodBox>
+      </StyledInfoBox>
 
       <div>
         <button>На доп. проверку</button>
@@ -66,3 +73,66 @@ export const EstablishmentInfo = ({ data }) => {
     </div>
   )
 }
+
+const StyledImageBox = styled(Box)({
+  width: '900px',
+  height: '364px',
+})
+
+const StyledImage = styled('img')({
+  maxWidth: '900px',
+  maxHeight: '364px',
+  width: '100%',
+  borderRadius: '10px',
+  objectFit: 'cover',
+})
+
+const StyledH1 = styled(Typography)({
+  width: '517px',
+  height: '46px',
+  marginTop: '40px',
+
+  fontFamily: 'Helvetica',
+  fontWeight: 700,
+  fontSize: '40px',
+  lineHeight: '100%',
+})
+
+const StyledInfoBox = styled(Box)({
+  margin: '60px 0 80px',
+  display: 'grid',
+  gap: '20px',
+
+  '& > .inline': {
+    '& > h2': {
+      display: 'inline',
+    },
+  },
+})
+
+const StyledH2 = styled(Typography)({
+  height: '28px',
+
+  fontFamily: 'Helvetica',
+  fontWeight: 400,
+  fontSize: '24px',
+  lineHeight: '100%',
+})
+
+const StyledSpan = styled(Typography)({
+  height: '28px',
+
+  fontFamily: 'Helvetica',
+  fontWeight: 400,
+  fontSize: '24px',
+  lineHeight: '100%',
+})
+
+const StyledContactsBox = styled(Box)({
+  display: 'grid',
+})
+
+const StyledFoodBox = styled(Box)({
+  display: 'flex',
+  gap: '10px',
+})
