@@ -20,19 +20,13 @@ export const Card = ({ data }) => {
       </StyledImageWrapper>
 
       <StyledInfo>
-        <StyledName>{name}</StyledName>
-
         <StyledName variant="h3">{name}</StyledName>
 
         <StyledDelivery>
           <StyledDeliveryIcon src={BagIcon} />
 
-          <StyledDeliveryTime>{deliveryTime} мин</StyledDeliveryTime>
-
           <StyledDeliveryTime component="span">{deliveryTime} мин</StyledDeliveryTime>
         </StyledDelivery>
-
-        {discount && <StyledDiscount>-{discount}% на ряд блюд</StyledDiscount>}
 
         {discount && <StyledDiscount component="span">-{discount}% на ряд блюд</StyledDiscount>}
       </StyledInfo>
