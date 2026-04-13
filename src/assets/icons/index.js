@@ -1,8 +1,8 @@
 import AboutIcon from './svgs/about.svg'
-import AddImageIcon from './svgs/add-Image.svg'
+import AddImageIcon from './svgs/add-image.svg'
 import AppleIcon from './svgs/apple.svg'
 import AttentionIcon from './svgs/attention.svg'
-import Arrow from './svgs/arrow.svg'
+import ArrowDownIcon from './svgs/arrow-down.svg'
 import BagIcon from './svgs/bag.svg'
 import BannersIcon from './svgs/banners.svg'
 import BasketIcon from './svgs/basket.svg'
@@ -54,7 +54,7 @@ export {
   AddImageIcon,
   AppleIcon,
   AttentionIcon,
-  Arrow,
+  ArrowDownIcon,
   BagIcon,
   BannersIcon,
   BasketIcon,

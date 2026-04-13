@@ -1,36 +1,41 @@
 import { FormControl, MenuItem, Select as MuiSelect } from '@mui/material'
 import { forwardRef, useState } from 'react'
-import { Arrow } from '../../assets/icons'
-import { sortOptions, SORT_LABEL } from './options'
+import { ArrowDownIcon } from '../../assets/icons'
 
 export const PopUp = forwardRef((props, ref) => {
-  const { value, onChange, options = sortOptions, label = SORT_LABEL } = props
+  const { value, onChange, options = (label = 'Сортировка по') } = props
+
   const [selected, setSelected] = useState(value || '')
 
   const handleChange = (e) => {
     setSelected(e.target.value)
+
     if (onChange) onChange(e.target.value)
   }
 
+  const handleRenderValue = (val) => {
+    if (!val) return label
+
+    const found = options.find((o) => o.value === val)
+
+    return found ? found.label : label
+  }
+
   return (
-    <FormControl variant="standard" size="small" style={{ minWidth: 160 }}>
+    <FormControl variant="standard" size="small">
       <MuiSelect
         ref={ref}
         id="sort-select"
         value={selected}
         onChange={handleChange}
-        IconComponent={() => <img src={Arrow} alt="arrow" width={18} height={18} />}
+        IconComponent={() => <img src={ArrowDownIcon} alt="arrow" width={18} height={18} />}
+        renderValue={handleRenderValue}
         disableUnderline
         displayEmpty
-        renderValue={(val) => {
-          if (!val) return label
-          const found = options.find((o) => o.value === val)
-          return found ? found.label : label
-        }}
       >
-        {options.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
+        {options.map(({ value, label }) => (
+          <MenuItem key={value} value={value}>
+            {label}
           </MenuItem>
         ))}
       </MuiSelect>
