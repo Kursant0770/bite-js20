@@ -5,6 +5,7 @@ import { Button } from '../ui/Button'
 
 export const UserCard = ({ title, price, oldPrice, weight, image }) => {
   const [count, setCount] = useState(0)
+
   const hasDiscount = !!(oldPrice && oldPrice > price)
 
   const handleAdd = () => setCount(1)
