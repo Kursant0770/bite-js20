@@ -3,53 +3,73 @@ import { styled } from '@mui/material/styles'
 import { Box, Typography } from '@mui/material'
 import { Button } from '../ui/Button'
 
-export const UserCard = ({ title, price, oldPrice, weight, image }) => {
+export const UserCard = ({ item }) => {
+  const { title, price, oldPrice, weight, image } = item
+
   const [count, setCount] = useState(0)
 
   const hasDiscount = !!(oldPrice && oldPrice > price)
 
   const handleAdd = () => setCount(1)
   const handleIncrement = () => setCount(count + 1)
-  const handleDecrement = () => setCount(count - 1)
+
+  const handleDecrement = () => {
+    if (count > 1) {
+      setCount(count - 1)
+    } else {
+      setCount(0)
+    }
+  }
 
   return (
-    <Card>
-      <ImageWrapper>
+    <StyledCard>
+      <StyledImageWrapper>
         <img src={image} alt={title} />
-        {hasDiscount && <Discount>-20%</Discount>}
-      </ImageWrapper>
+        {hasDiscount && <StyledDiscount>-20%</StyledDiscount>}
+      </StyledImageWrapper>
 
-      <PriceRow>
-        <CurrentPrice isDiscount={hasDiscount}>{price} сом</CurrentPrice>
-        {hasDiscount && <OldPrice>{oldPrice} сом</OldPrice>}
-      </PriceRow>
+      <StyledPriceRow>
+        <StyledCurrentPrice isDiscount={hasDiscount}>
+          {price} сом
+        </StyledCurrentPrice>
 
-      <Title>{title}</Title>
-      <Weight>{weight} г</Weight>
+        {hasDiscount && (
+          <StyledOldPrice>{oldPrice} сом</StyledOldPrice>
+        )}
+      </StyledPriceRow>
+
+      <StyledTitle>{title}</StyledTitle>
+      <StyledWeight>{weight} г</StyledWeight>
 
       {count === 0 ? (
-        <AddButton onClick={handleAdd} variant="outlined">
+        <StyledAddButton onClick={handleAdd} variant="outlined">
           + Добавить
-        </AddButton>
+        </StyledAddButton>
       ) : (
-        <Counter>
-          <CounterButton onClick={handleDecrement}>-</CounterButton>
+        <StyledCounter>
+          <StyledCounterButton onClick={handleDecrement}>
+            -
+          </StyledCounterButton>
+
           <Typography>{count}</Typography>
-          <CounterButton onClick={handleIncrement}>+</CounterButton>
-        </Counter>
+
+          <StyledCounterButton onClick={handleIncrement}>
+            +
+          </StyledCounterButton>
+        </StyledCounter>
       )}
-    </Card>
+    </StyledCard>
   )
 }
 
-const Card = styled(Box)({
+const StyledCard = styled(Box)({
   width: '210px',
   backgroundColor: '#F5F4F2',
   borderRadius: '10px',
   padding: '10px',
 })
 
-const ImageWrapper = styled(Box)({
+const StyledImageWrapper = styled(Box)({
   position: 'relative',
   '& img': {
     width: '190px',
@@ -59,7 +79,7 @@ const ImageWrapper = styled(Box)({
   },
 })
 
-const Discount = styled(Box)({
+const StyledDiscount = styled(Box)({
   position: 'absolute',
   bottom: '8px',
   right: '8px',
@@ -73,14 +93,14 @@ const Discount = styled(Box)({
   justifyContent: 'center',
 })
 
-const PriceRow = styled(Box)({
+const StyledPriceRow = styled(Box)({
   display: 'flex',
   gap: '8px',
   alignItems: 'baseline',
   marginTop: '8px',
 })
 
-const CurrentPrice = styled(Typography, {
+const StyledCurrentPrice = styled(Typography, {
   shouldForwardProp: (prop) => prop !== 'isDiscount',
 })(({ isDiscount }) => ({
   fontSize: '18px',
@@ -88,23 +108,23 @@ const CurrentPrice = styled(Typography, {
   color: isDiscount ? '#ff6b00' : '#000',
 }))
 
-const OldPrice = styled(Typography)({
+const StyledOldPrice = styled(Typography)({
   textDecoration: 'line-through',
   color: '#999',
 })
 
-const Title = styled(Typography)({
+const StyledTitle = styled(Typography)({
   marginTop: '6px',
   fontSize: '18px',
   fontWeight: 500,
 })
 
-const Weight = styled(Typography)({
+const StyledWeight = styled(Typography)({
   fontSize: '14px',
   color: '#000',
 })
 
-const Counter = styled(Box)({
+const StyledCounter = styled(Box)({
   marginTop: '10px',
   height: '38px',
   display: 'flex',
@@ -115,7 +135,7 @@ const Counter = styled(Box)({
   padding: '0 10px',
 })
 
-const CounterButton = styled(Button)({
+const StyledCounterButton = styled(Button)({
   minWidth: 'auto',
   border: 'none',
   background: 'transparent',
@@ -123,8 +143,9 @@ const CounterButton = styled(Button)({
   fontSize: '18px',
 })
 
-const AddButton = styled(Button)({
+const StyledAddButton = styled(Button)({
   width: '100%',
   marginTop: '10px',
   height: '38px',
+  alignItems: 'center',
 })
