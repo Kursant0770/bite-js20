@@ -1,5 +1,4 @@
 import { styled, Box } from '@mui/material'
-
 import {
   MapIcon,
   MagnifierIcon,
@@ -8,45 +7,44 @@ import {
   UserIcon,
   LogoIcon,
 } from '../../assets/icons'
-
 import { Button } from './Button'
 
 export const Header = ({ address = 'Укажите адрес', isAuth = false, cartCount = 0 }) => (
-  <HeaderWrapper>
-    <LeftContainer>
+  <StyleHeaderWrapper>
+    <StyleLeftContainer>
       <img src={LogoIcon} alt="logo" />
 
-      <Address>
+      <StyleAddress>
         <img src={MapIcon} alt="map" />
 
         {address}
-      </Address>
-    </LeftContainer>
+      </StyleAddress>
+    </StyleLeftContainer>
 
-    <RightContainer>
-      <SearchContainer>
-        <SearchInput placeholder="Найти ресторан/кафе" />
-        <SearchIconImg src={MagnifierIcon} alt="search" />
-      </SearchContainer>
+    <StyleRightContainer>
+      <StyleSearchContainer>
+        <StyleSearchInput placeholder="Найти ресторан/кафе" />
+        <StyleSearchIconImg src={MagnifierIcon} alt="search" />
+      </StyleSearchContainer>
 
       {isAuth ? (
         <>
-          <WorldStyle src={WorldIcon} alt="world" className="world-icon" />
+          <StyleWorld src={WorldIcon} alt="world" className="world-icon" />
 
-          <CartButton>
+          <StyleCartButton>
             <img src={BasketIcon} alt="basket" /> Корзина {cartCount}
-          </CartButton>
+          </StyleCartButton>
 
-          <User src={UserIcon} alt="user" className="user-icon" />
+          <StyleUser src={UserIcon} alt="user" className="user-icon" />
         </>
       ) : (
         <StyleButton>Войти</StyleButton>
       )}
-    </RightContainer>
-  </HeaderWrapper>
+    </StyleRightContainer>
+  </StyleHeaderWrapper>
 )
 
-const HeaderWrapper = styled(Box)({
+const StyleHeaderWrapper = styled(Box)({
   width: '100%',
   height: '44px',
   display: 'flex',
@@ -57,14 +55,14 @@ const HeaderWrapper = styled(Box)({
   fontFamily: 'Helvetica',
 })
 
-const LeftContainer = styled(Box)({
+const StyleLeftContainer = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   gap: '1rem',
 })
 
-const Address = styled(Box)({
+const StyleAddress = styled(Box)({
   padding: '8px 20px',
   border: '1px solid #000000',
   borderRadius: '10px',
@@ -75,7 +73,7 @@ const Address = styled(Box)({
   marginLeft: '42px',
 })
 
-const RightContainer = styled(Box)({
+const StyleRightContainer = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   gap: '12px',
@@ -85,11 +83,11 @@ const RightContainer = styled(Box)({
   },
 })
 
-const SearchContainer = styled(Box)({
+const StyleSearchContainer = styled(Box)({
   position: 'relative',
 })
 
-const SearchInput = styled('input')(({ theme }) => ({
+const StyleSearchInput = styled('input')(({ theme }) => ({
   color: theme.palette.primary.black,
   width: '360px',
   height: '34px',
@@ -98,46 +96,53 @@ const SearchInput = styled('input')(({ theme }) => ({
   padding: '8px 20px 8px 20px',
   outline: 'none',
   fontSize: '16px',
+
   '&:hover': {
     borderColor: theme.palette.primary.black,
     color: '#444444',
   },
+
   '&:active': {
     borderColor: theme.palette.primary.black,
     color: '#444444',
   },
+
   '&:error': {
     borderColor: theme.palette.error.main,
     color: '#444444',
   },
 }))
 
-const User = styled('img')(({ theme }) => ({
+const StyleUser = styled('img')(({ theme }) => ({
   borderRadius: '10px',
+
   '&:hover': {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.black,
   },
+
   '&:active': {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.black,
   },
 }))
 
-const WorldStyle = styled('img')(({ theme }) => ({
+const StyleWorld = styled('img')(({ theme }) => ({
   marginLeft: '20px',
   borderRadius: '10px',
+
   '&:hover': {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.black,
   },
+
   '&:active': {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.black,
   },
 }))
 
-const SearchIconImg = styled('img')({
+const StyleSearchIconImg = styled('img')({
   position: 'absolute',
   right: '20px',
   top: '50%',
@@ -148,27 +153,31 @@ const SearchIconImg = styled('img')({
 const StyleButton = styled(Button)(({ theme }) => ({
   fontWeight: '700',
   marginLeft: '20px',
+  alignItems: 'center',
 
   '&:hover': {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.black,
   },
+
   '&:active': {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.black,
   },
 }))
 
-const CartButton = styled(Button)(({ theme }) => ({
+const StyleCartButton = styled(Button)(({ theme }) => ({
   padding: '8px 10px 8px 10px',
   gap: '10px',
   fontSize: '16px',
   marginLeft: '10px',
   marginRight: '10px',
+
   '&:hover': {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.black,
   },
+
   '&:active': {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.black,
