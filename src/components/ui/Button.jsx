@@ -14,6 +14,7 @@ const StyledButton = styled(MuiButton)(({ variant }) => ({
   borderRadius: '10px',
   textTransform: 'none',
   height: '34px',
+  textAlign: 'center',
 
   ...(!variant && {
     border: '1px solid #000000',
@@ -38,14 +39,14 @@ const StyledButton = styled(MuiButton)(({ variant }) => ({
   }),
 
   ...(variant === 'outlined' && {
-  border: '1px solid #000000',
-  color: '#000000',
-
-  '&:hover': {
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
     border: '1px solid #000000',
-  },
-}),
+    color: '#000000',
+
+    '&:hover': {
+      backgroundColor: 'rgba(0, 0, 0, 0.05)',
+      border: '1px solid #000000',
+    },
+  }),
 
   '&:active': {
     transform: 'scale(0.97)',
