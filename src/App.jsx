@@ -1,1 +1,9 @@
-export const App = () => <h1>Bite</h1>
+import { PopUp } from './components/ui/PopUp'
+
+export default function App() {
+  return (
+    <>
+      <PopUp />
+    </>
+  )
+}
