@@ -1,75 +1,70 @@
-import { styled } from '@mui/material'
+import { styled, Box } from '@mui/material'
 
-import MapIcon from '../../assets/icons/svgs/map.svg'
-import MagnifierIcon from '../../assets/icons/svgs/magnifier.svg'
-import WorldIcon from '../../assets/icons/svgs/world.svg'
-import BasketIcon from '../../assets/icons/svgs/basket.svg'
-import UserIcon from '../../assets/icons/svgs/user.svg'
-import LogoIcon from '../../assets/icons/svgs/logo.svg'
+import {
+  MapIcon,
+  MagnifierIcon,
+  WorldIcon,
+  BasketIcon,
+  UserIcon,
+  LogoIcon,
+} from '../../assets/icons'
 
 import { Button } from './Button'
 
-export const Header = ({
-  address = 'Проспект Чуй, 120',
-  isAuth = false,
-  cartCount = 0,
-  leftChildren,
-  rightChildren,
-  bottomChildren,
-}) => {
-  return (
-    <HeaderWrapper>4
-      <Left>
-        <img src={LogoIcon} alt="logo" />
-        <Address>
-          <img src={MapIcon} alt="map" style={{ width: '16px', marginRight: '4px' }} />
-          {address}
-        </Address>
-        {leftChildren}
-      </Left>
+export const Header = ({ address = 'Укажите адрес', isAuth = false, cartCount = 0 }) => (
+  <HeaderWrapper>
+    <LeftContainer>
+      <img src={LogoIcon} alt="logo" />
 
-      <Right>
-        <SearchContainer>
-          <SearchInput placeholder="Найти ресторан/кафе" />
-          <SearchIconImg src={MagnifierIcon} alt="search" />
-        </SearchContainer>
+      <Address>
+        <img src={MapIcon} alt="map" />
 
-        {isAuth ? (
-          <>
-            <WorldStyle src={WorldIcon} alt="world" />
-            <CartButton>
-              <img src={BasketIcon} alt="basket" /> Корзина {cartCount}
-            </CartButton>
-            <User src={UserIcon} alt="user" />
-          </>
-        ) : (
-          <StyleButton>Войти</StyleButton>
-        )}
-        {rightChildren}
-      </Right>
+        {address}
+      </Address>
+    </LeftContainer>
 
-      {bottomChildren}
-    </HeaderWrapper>
-  )
-}
+    <RightContainer>
+      <SearchContainer>
+        <SearchInput placeholder="Найти ресторан/кафе" />
+        <SearchIconImg src={MagnifierIcon} alt="search" />
+      </SearchContainer>
 
-const HeaderWrapper = styled('div')({
+      {isAuth ? (
+        <>
+          <WorldStyle src={WorldIcon} alt="world" className="world-icon" />
+
+          <CartButton>
+            <img src={BasketIcon} alt="basket" /> Корзина {cartCount}
+          </CartButton>
+
+          <User src={UserIcon} alt="user" className="user-icon" />
+        </>
+      ) : (
+        <StyleButton>Войти</StyleButton>
+      )}
+    </RightContainer>
+  </HeaderWrapper>
+)
+
+const HeaderWrapper = styled(Box)({
   width: '100%',
   height: '44px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: '0 20px',
+  padding: '40px',
   backgroundColor: '#fff',
+  fontFamily: 'Helvetica',
 })
 
-const Left = styled('div')({
+const LeftContainer = styled(Box)({
   display: 'flex',
   alignItems: 'center',
-  gap: '16px',
+  justifyContent: 'center',
+  gap: '1rem',
 })
 
-const Address = styled('div')({
+const Address = styled(Box)({
   padding: '8px 20px',
   border: '1px solid #000000',
   borderRadius: '10px',
@@ -80,13 +75,17 @@ const Address = styled('div')({
   marginLeft: '42px',
 })
 
-const Right = styled('div')({
+const RightContainer = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   gap: '12px',
+
+  '& .world-icon, .user-icon': {
+    cursor: 'pointer',
+  },
 })
 
-const SearchContainer = styled('div')({
+const SearchContainer = styled(Box)({
   position: 'relative',
 })
 
@@ -147,15 +146,9 @@ const SearchIconImg = styled('img')({
 })
 
 const StyleButton = styled(Button)(({ theme }) => ({
-  border: '1px solid #000000',
-  padding: '8px 22px 8px 22px',
-  width: '93px',
-  cursor: 'pointer',
-  fontSize: '16px',
   fontWeight: '700',
-  color: '#444444',
-  lineHeight: '100%',
   marginLeft: '20px',
+
   '&:hover': {
     backgroundColor: theme.palette.secondary.main,
     color: theme.palette.primary.black,
