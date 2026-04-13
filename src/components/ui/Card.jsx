@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NoteIcon, NoteStateIcon, BagIcon } from '../../assets/icons'
+import { NoteIcon, SaveFillIcon, BagIcon } from '../../assets/icons'
 import { styled, Typography, Box, ButtonBase } from '@mui/material'
 
 export const Card = ({ data }) => {
@@ -15,7 +15,7 @@ export const Card = ({ data }) => {
         <StyledImage src={image} alt={name} />
 
         <StyledBookmark bookmarked={bookmarked} onClick={handleBookmarkClick} disableRipple>
-          {bookmarked ? <img className="noteState" src={NoteStateIcon} /> : <img src={NoteIcon} />}
+          {bookmarked ? <img className="noteState" src={SaveFillIcon} /> : <img src={NoteIcon} />}
         </StyledBookmark>
       </StyledImageWrapper>
 

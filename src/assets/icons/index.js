@@ -33,7 +33,7 @@ import LogoIcon from './svgs/logo.svg'
 import MagnifierIcon from './svgs/magnifier.svg'
 import MapIcon from './svgs/map.svg'
 import ModerationIcon from './svgs/moderation.svg'
-import NoteStateIcon from './svgs/node-state.svg'
+import SaveFillIcon from './svgs/save-fill-icon.svg'
 import NoteIcon from './svgs/note.svg'
 import OrdersIcon from './svgs/orders.svg'
 import PencilSquareIcon from './svgs/pencil-square.svg'
@@ -84,7 +84,7 @@ export {
   MagnifierIcon,
   MapIcon,
   ModerationIcon,
-  NoteStateIcon,
+  SaveFillIcon,
   NoteIcon,
   OrdersIcon,
   PencilSquareIcon,
