@@ -3,7 +3,7 @@ import { forwardRef, useState } from 'react'
 import { ArrowDownIcon } from '../../assets/icons'
 
 export const PopUp = forwardRef((props, ref) => {
-  const { value, onChange, options = (label = 'Сортировка по') } = props
+  const { value, onChange, options, label = 'Сортировка по' } = props
 
   const [selected, setSelected] = useState(value || '')
 
