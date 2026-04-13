@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { styled } from '@mui/material/styles'
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, styled } from '@mui/material'
 import { Button } from '../ui/Button'
 
 export const UserCard = ({ item }) => {
@@ -25,17 +24,14 @@ export const UserCard = ({ item }) => {
     <StyledCard>
       <StyledImageWrapper>
         <img src={image} alt={title} />
+
         {hasDiscount && <StyledDiscount>-20%</StyledDiscount>}
       </StyledImageWrapper>
 
       <StyledPriceRow>
-        <StyledCurrentPrice isDiscount={hasDiscount}>
-          {price} сом
-        </StyledCurrentPrice>
+        <StyledCurrentPrice isDiscount={hasDiscount}>{price} сом</StyledCurrentPrice>
 
-        {hasDiscount && (
-          <StyledOldPrice>{oldPrice} сом</StyledOldPrice>
-        )}
+        {hasDiscount && <StyledOldPrice>{oldPrice} сом</StyledOldPrice>}
       </StyledPriceRow>
 
       <StyledTitle>{title}</StyledTitle>
@@ -47,15 +43,11 @@ export const UserCard = ({ item }) => {
         </StyledAddButton>
       ) : (
         <StyledCounter>
-          <StyledCounterButton onClick={handleDecrement}>
-            -
-          </StyledCounterButton>
+          <StyledCounterButton onClick={handleDecrement}>-</StyledCounterButton>
 
           <Typography>{count}</Typography>
 
-          <StyledCounterButton onClick={handleIncrement}>
-            +
-          </StyledCounterButton>
+          <StyledCounterButton onClick={handleIncrement}>+</StyledCounterButton>
         </StyledCounter>
       )}
     </StyledCard>
@@ -71,6 +63,7 @@ const StyledCard = styled(Box)({
 
 const StyledImageWrapper = styled(Box)({
   position: 'relative',
+
   '& img': {
     width: '190px',
     height: '168px',
